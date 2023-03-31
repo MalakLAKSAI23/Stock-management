@@ -28,37 +28,54 @@ class InfosState extends State<Infos> {
         ),
       ),
       drawer: const MyDrawer(),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Container(
-              margin: const EdgeInsets.all(20),
-              child: Column(
-                 children: [
-              Image.asset(
-                "assets/images/infos.png",
-                height: 300,
-                width: 500,
+      body: SingleChildScrollView(
+        child: Container(
+            margin: const EdgeInsets.all(20),
+            child: Column(
+               children: [
+                Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+               Icon(
+                Icons.info,
+                size: 30,
               ),
-              const SizedBox(
-                height: 12,
+              SizedBox(
+                width: 10,
               ),
-              const Text(
-                '"Stock Tracker"',
-                textAlign: TextAlign.center,
-                style: TextStyle(color:GlobalColors.myColor, fontSize: 25),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              const Text(
-                'is an application that will allow companies to manage their stock more efficiently\n by recording product entries and exits, monitoring stock levels.',
-                style:TextStyle(
-                  fontSize: 20,
-                ),
-              ),
+              Text(
+                'infos',
+                style: TextStyle( fontSize: 35),
+              )
             ],
-              )),
-        ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+            Image.asset(
+              "assets/images/infos.png",
+              height: 300,
+              width: 500,
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            const Text(
+              '"Stock Tracker"',
+              textAlign: TextAlign.center,
+              style: TextStyle(color:GlobalColors.myColor, fontSize: 25),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            const Text(
+              'is an application that will allow companies to manage their stock more efficiently\n by recording product entries and exits, monitoring stock levels.',
+              style:TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ],
+            )),
       ),
     );
   }

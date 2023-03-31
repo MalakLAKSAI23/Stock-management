@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:stocktracker/utils/global.colors.dart';
-import 'package:stocktracker/view/add.supplier.view.dart';
-import 'package:stocktracker/view/update.supplier.view.dart';
-import 'package:stocktracker/view/view.supplier.view.dart';
 import 'package:stocktracker/view/widget/drawer.dart';
 
 class Supplier extends StatefulWidget {
@@ -19,7 +15,7 @@ class SupplierState extends State<Supplier> {
       backgroundColor: GlobalColors.whiteColor,
        floatingActionButton: FloatingActionButton(
         backgroundColor: GlobalColors.myColor, //couleur blue
-        onPressed: () {Get.off(const AddSupplier());},
+        onPressed: () { Navigator.of(context).pushNamed("addSupplier");},
         child: const Icon(
           Icons.add,
           color: Colors.white,
@@ -45,7 +41,7 @@ class SupplierState extends State<Supplier> {
         child: 
         Column(
           children: [
-            const Text("Supplier",style:TextStyle(color:GlobalColors.myColor,fontWeight:FontWeight.w600,)),
+            const Text("Supplier",style:TextStyle(color:GlobalColors.myColor,fontWeight:FontWeight.w600,fontSize: 20,)),
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child:
@@ -64,7 +60,7 @@ class SupplierState extends State<Supplier> {
                       ),
                       DataColumn(
                       label: 
-                      Text("  Operation",style: TextStyle(color:GlobalColors.textColor,fontWeight: FontWeight.w600 ),),
+                      Text("Operation",style: TextStyle(color:GlobalColors.textColor,fontWeight: FontWeight.w600 ),),
                       ),
                   ],
                   rows: [
@@ -84,12 +80,12 @@ class SupplierState extends State<Supplier> {
                              children: [
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(backgroundColor:GlobalColors.myColor,),
-                      onPressed: (){Get.off(const ViewSupplier());}, 
+                      onPressed: (){ Navigator.of(context).pushNamed("viewSupplier");}, 
                       child:const Icon(Icons.remove_red_eye_outlined,color:Colors.white,size: 20,), ),
                   const SizedBox(width: 8.0),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(backgroundColor:GlobalColors.myColor3),
-                      onPressed: (){Get.off(const UpdateSupplier());}, 
+                      onPressed: (){ Navigator.of(context).pushNamed("updateSupplier");}, 
                       child:const Icon(Icons.create,color:Colors.white,size: 20,), ),
                   const SizedBox(width: 8.0),
                   ElevatedButton(

@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:stocktracker/main.dart';
 import 'package:stocktracker/utils/global.colors.dart';
-import 'package:stocktracker/view/Product.view.dart';
-import 'package:stocktracker/view/dashboard.view.dart';
-import 'package:stocktracker/view/lowStock.view.dart';
-import 'package:stocktracker/view/stock.view.dart';
-import 'package:stocktracker/view/supplier.view.dart';
-
-import '../home.view.dart';
-import '../infos.view.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
@@ -49,41 +41,51 @@ class _MyDrawerState extends State<MyDrawer> {
           ListTile(
               title: const Text("Home Page"),
               leading: const Icon(Icons.home),
-              onTap: () {
-                Get.off(const HomePage());
-              }),
+            onTap:() => Navigator.of(context).pushNamed("home"),
+              ),
           ListTile(
             title: const Text("Stock"),
             leading: const Icon(Icons.auto_graph_outlined),
-            onTap: () => Get.off(const Stock()),
+            onTap:() => Navigator.of(context).pushNamed("stock"),
+
           ),
           ListTile(
             title: const Text("Supplier"),
             leading: const Icon(Icons.person_3_outlined),
-            onTap: () => Get.off(const Supplier()),
+            onTap:() => Navigator.of(context).pushNamed("supplier"),
+
           ),
           ListTile(
             title:const  Text("Product"),
             leading:const Icon(Icons.ballot_outlined),
-            onTap: () => Get.off(const Product()),
+            onTap:() => Navigator.of(context).pushNamed("product"),
           ),
           ListTile(
               title: const Text("Dashbord"),
               leading: const Icon(Icons.dashboard_outlined),
-              onTap: () {
-                Get.off(const Dashboard());
-              }),
+            onTap:() => Navigator.of(context).pushNamed("dashboard"),
+            ),
           ListTile(
             title:const Text("Low Stock"),
             leading:const Icon(Icons.notifications_active_outlined),
-            onTap: () => Get.off(const LowStock()),
+            onTap:() => Navigator.of(context).pushNamed("lowStock"),
+
+            // onTap: () => Get.off(const LowStock()),
           ),
           ListTile(
               title: const Text("Infos"),
               leading: const Icon(Icons.info_outline_rounded),
-              onTap: () {
-                Get.off(const Infos());
-              })
+              onTap:() => Navigator.of(context).pushNamed("infos"),
+              ),
+          ListTile(
+              title: const Text("Logout"),
+              leading: const Icon(Icons.logout_outlined),
+              onTap:() {
+                sharedPref.clear();
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil("splashView", (route) => false);
+              } 
+              )    
         ],
       ),
     );

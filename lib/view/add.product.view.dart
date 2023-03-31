@@ -56,8 +56,8 @@ class AddProductState extends State<AddProduct> {
                   children: [
                     Image.asset(
                       "assets/images/addpro.png",
-                      height: 300,
-                      width: 300,
+                      height: 250,
+                      width: 250,
                     ),
                     const SizedBox(
                       height: 12,
@@ -178,7 +178,7 @@ class AddProductState extends State<AddProduct> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Expanded(child: MyButton(color: Colors.blueGrey, onPressed: () {  }, text: 'Cancel', textColor: Colors.white,)),
+                        Expanded(child: MyButton(color: Colors.blueGrey, onPressed: () {Navigator.of(context).pushNamed("stock");   }, text: 'Cancel', textColor: Colors.white,)),
                         const SizedBox(
                           width: 20,
                         ),

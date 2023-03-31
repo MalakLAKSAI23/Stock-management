@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:stocktracker/auth/select.auth.dart';
 import 'package:stocktracker/utils/global.colors.dart';
 
 class SplashView extends StatelessWidget {
@@ -11,7 +9,7 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds:6), () {
-      Get.to(const SelectAuth());
+    Navigator.of(context).pushNamed("selectAuth");
     });
     return Scaffold(
       backgroundColor: GlobalColors.myColor,

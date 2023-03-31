@@ -3,7 +3,6 @@ import 'package:stocktracker/components/crud.dart';
 import 'package:stocktracker/components/linkapi.dart';
 import 'package:stocktracker/main.dart';
 import 'package:stocktracker/utils/global.colors.dart';
-import 'package:stocktracker/view/widget/card.product.view.dart';
 import 'package:stocktracker/view/widget/drawer.dart';
 
 class Product extends StatefulWidget {
@@ -59,34 +58,28 @@ class ProductState extends State<Product> with Crud {
             alignment: WrapAlignment.center,
             direction: Axis.horizontal,
             children: [
-               CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',),
-               CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',),
-               CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',),
-               CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',),
-               CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',),
-               CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',),
-
-              // FutureBuilder(
-              //     future: getProduct(),
-              //     builder: (BuildContext context, AsyncSnapshot snapshot) {
-              //       if (snapshot.hasData) {
-              //         return ListView.builder(
-              //           itemCount: snapshot.data['data'].lenght,
-              //           shrinkWrap: true,
-              //           physics:NeverScrollableScrollPhysics() ,
-              //           itemBuilder: (context, i) {
-              //           return Text("${snapshot.data['data']['name_p']}");
-              //         });
-              //       }
-              //       if (snapshot.connectionState == ConnectionState.waiting) {
-              //         return const Center(
-              //           child: Text("Loading ..."),
-              //         );
-              //       }
-              //       return const Center(
-              //         child: Text("Loading ..."),
-              //       );
-              //     })
+              //  CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',)
+              FutureBuilder(
+                  future: getProduct(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: snapshot.data['data'].lenght,
+                        shrinkWrap: true,
+                        physics:NeverScrollableScrollPhysics() ,
+                        itemBuilder: (context, i) {
+                        return Text("${snapshot.data['data']['name_p']}");
+                      });
+                    }
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: Text("Loading ..."),
+                      );
+                    }
+                    return const Center(
+                      child: Text("Loading ..."),
+                    );
+                  })
             ],
           ),
         ),

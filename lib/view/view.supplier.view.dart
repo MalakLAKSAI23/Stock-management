@@ -35,6 +35,7 @@ class ViewSupplierState extends State<ViewSupplier> {
           
               padding:const EdgeInsets.only(top:30,left: 20,right: 20,bottom: 30),
               width:300,
+              height: 500,
               decoration:BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(40),
@@ -52,8 +53,8 @@ class ViewSupplierState extends State<ViewSupplier> {
            
                 Image.asset(
                  "assets/images/supplier2.png",
-                 height: 300,
-                 width: 500,
+                 height: 250,
+                 width: 250,
               
              ),
              const SizedBox(

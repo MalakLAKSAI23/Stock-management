@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:stocktracker/utils/global.colors.dart';
-import 'package:stocktracker/view/update.product.view.dart';
-import 'package:stocktracker/view/view.product.stock.view.dart';
-import 'package:stocktracker/view/add.product.view.dart';
 import 'package:stocktracker/view/widget/drawer.dart';
 
 class Stock extends StatefulWidget {
@@ -19,7 +15,7 @@ class StockState extends State<Stock> {
       backgroundColor: GlobalColors.whiteColor,
        floatingActionButton: FloatingActionButton(
         backgroundColor: GlobalColors.myColor, //couleur blue
-        onPressed: () { Get.off(const AddProduct());},
+        onPressed: () {  Navigator.of(context).pushNamed("addProduct");},
         child: const Icon(
           Icons.add,
           color: Colors.white,
@@ -45,7 +41,7 @@ class StockState extends State<Stock> {
         child: 
         Column(
           children: [
-            const Text("Stock",style:TextStyle(color:GlobalColors.myColor,fontWeight:FontWeight.w600,)),
+            const Text("Stock",style:TextStyle(color:GlobalColors.myColor,fontWeight:FontWeight.w600,fontSize: 20)),
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child:
@@ -87,12 +83,12 @@ class StockState extends State<Stock> {
                              children: [
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(backgroundColor:GlobalColors.myColor,),
-                      onPressed: (){ Get.off(const ViewProduct());}, 
+                      onPressed: (){  Navigator.of(context).pushNamed("viewProduct");}, 
                       child:const Icon(Icons.remove_red_eye_outlined,color:Colors.white,size: 20,), ),
                   const SizedBox(width: 8.0),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(backgroundColor:GlobalColors.myColor3),
-                      onPressed: (){ Get.off(const UpdateProduct());}, 
+                      onPressed: (){  Navigator.of(context).pushNamed("updateProduct");}, 
                       child:const Icon(Icons.create,color:Colors.white,size: 20,), ),
                   const SizedBox(width: 8.0),
                   ElevatedButton(

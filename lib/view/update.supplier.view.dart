@@ -53,7 +53,7 @@ class UpdateSupplierState extends State<UpdateSupplier> {
                 child: Column(
                   children: [
                     Image.asset(
-                      "assets/images/5.png",
+                      "assets/images/supplier2.png",
                       height: 300,
                       width: 300,
                     ),
@@ -61,7 +61,7 @@ class UpdateSupplierState extends State<UpdateSupplier> {
                       height: 12,
                     ),
                     const Text(
-                      'Add Supplier',
+                      'Update Supplier',
                       textAlign: TextAlign.center,
                       style:
                           TextStyle(color: GlobalColors.myColor, fontSize: 25),
@@ -111,7 +111,7 @@ class UpdateSupplierState extends State<UpdateSupplier> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Expanded(child: MyButton(color: Colors.blueGrey, onPressed: () {  }, text: 'Cancel', textColor: Colors.white,)),
+                        Expanded(child: MyButton(color: Colors.blueGrey, onPressed: () { Navigator.of(context).pushNamed("supplier");  }, text: 'Cancel', textColor: Colors.white,)),
                         const SizedBox(
                           width: 20,
                         ),

@@ -28,12 +28,15 @@ class ViewProductState extends State<ViewProduct> {
         ),
       ),
       drawer: const MyDrawer(),
-      body: Center(
-        child:
-         SingleChildScrollView(
+      body:
+       SingleChildScrollView(
+         child: 
+         Container(
+          alignment: Alignment.center,
+          margin:const EdgeInsets.only(top: 40),
            child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              //  Image.asset("assets/images/produit.png",width:300,height: 300,),
                Container(
                 padding:const EdgeInsets.only(top:30,left: 20,right: 20,bottom: 30),
                 width:300,
@@ -109,11 +112,11 @@ class ViewProductState extends State<ViewProduct> {
               
             ),
                
-         
+                
               ]
            ),
          ),
-      ),
+       ),
     );
   }
 }

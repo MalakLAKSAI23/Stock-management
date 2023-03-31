@@ -1,6 +1,8 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:stocktracker/auth/login.auth.dart';
+import 'package:stocktracker/components/crud.dart';
+import 'package:stocktracker/components/linkapi.dart';
+import 'package:stocktracker/main.dart';
 import 'package:stocktracker/view/widget/input.dart';
 import 'package:stocktracker/view/widget/mybutton.global.dart';
 import '../utils/global.colors.dart';
@@ -15,19 +17,68 @@ class Register extends StatefulWidget {
 
 class RegistreState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwdController = TextEditingController();
+  Crud crud = Crud();
+  bool isLoading = false;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   final _passwdConfirmController = TextEditingController();
-  void register() {
-    if (_formKey.currentState!.validate()) {
-      // FirebaseAuth.instance.createUserWIthEmailAndPassword();
+  signUp() async {
+    isLoading = true;
+    setState(() {
+      
+    });
+    var response = await crud.postRequest(linkSignUp, {
+      "email": emailController.text,
+      "password": passwordController.text,
+    });
+      isLoading = false;
+    setState(() {
+      
+    });
+    if (response['status'] == "success") {
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.error,
+          btnCancel:MaterialButton(color: Colors.grey,onPressed: () => Navigator.of(context).pushNamed("register") ,child: Text("Cancel",style: TextStyle(color: Colors.white)),),
+          title: "Alert",
+          body: const Text("Registration Failed !!! Please try again later."))
+        ..show();
+
+    } else {
+        Navigator.of(context).restorablePushNamedAndRemoveUntil("home", (route) => false);
+         sharedPref.setString("id", response['data']['id'].toString());
+         sharedPref.setString("email", response['data']['email']);
+         sharedPref.setString("password", response['data']['password']);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+        bottomNavigationBar: Container(
+        margin: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "You have an account?",
+              style: TextStyle(color: GlobalColors.textColor),
+            ),
+            InkWell(
+              // onTap: () => Get.off(const Login()),
+              onTap: () => Navigator.of(context).pushNamed("login"),
+
+              child: const Text(
+                "Login",
+                style: TextStyle(
+                  color: GlobalColors.myColor,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      body:isLoading==true ? Center(child: CircularProgressIndicator(color: GlobalColors.myColor,),) :Center(
         child: SingleChildScrollView(
           child: Container(
             margin: const EdgeInsets.only(
@@ -74,7 +125,7 @@ class RegistreState extends State<Register> {
                     return null;
                   },
                   prefixIcon: const Icon(Icons.email_outlined),
-                  controller: _emailController,
+                  controller: emailController,
                 ),
 
                 const SizedBox(
@@ -95,7 +146,7 @@ class RegistreState extends State<Register> {
                     return null;
                   },
                   prefixIcon: const Icon(Icons.lock_outline_rounded),
-                  controller: _passwdController,
+                  controller: passwordController,
                 ),
                 const SizedBox(
                   height: 10,
@@ -113,7 +164,7 @@ class RegistreState extends State<Register> {
                     if (value!.isEmpty) {
                       return 'Confirmation de mot de passe requise';
                     }
-                    if (value != _passwdController.text) {
+                    if (value != passwordController.text) {
                       return 'Le mot de passe ne correspond pas';
                     }
                     return null;
@@ -127,12 +178,13 @@ class RegistreState extends State<Register> {
                 //MyButton c'est un classe declarer dans le package widget
                 //btn pour connexion
                 MyButton(
-                  text: "Login",
+                  text: "SignUp",
                   color: GlobalColors.myColor,
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       // Si le formulaire est valide, enregistrer les valeurs
-                      _formKey.currentState!.save();
+                      // _formKey.currentState!.save();
+                      await signUp();
 
                       // Les informations d'identification sont valides
                     } else {
@@ -146,27 +198,6 @@ class RegistreState extends State<Register> {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        margin: const EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              "You have an account?",
-              style: TextStyle(color: GlobalColors.textColor),
-            ),
-            InkWell(
-                onTap:() => Get.off(const Login()),
-              child: const Text(
-                "Login",
-                style: TextStyle(
-                  color: GlobalColors.myColor,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+     );
   }
 }

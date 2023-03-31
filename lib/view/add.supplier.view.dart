@@ -58,7 +58,7 @@ class AddSupplierState extends State<AddSupplier> {
                       width: 300,
                     ),
                     const SizedBox(
-                      height: 12,
+                      height: 30,
                     ),
                     const Text(
                       'Add Supplier',
@@ -111,7 +111,7 @@ class AddSupplierState extends State<AddSupplier> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Expanded(child: MyButton(color: Colors.blueGrey, onPressed: () {  }, text: 'Cancel', textColor: Colors.white,)),
+                        Expanded(child: MyButton(color: Colors.blueGrey, onPressed: () { Navigator.of(context).pushNamed("supplier"); }, text: 'Cancel', textColor: Colors.white,)),
                         const SizedBox(
                           width: 20,
                         ),

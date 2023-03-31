@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:stocktracker/auth/login.auth.dart';
-import 'package:stocktracker/auth/register.auth.dart';
 import 'package:stocktracker/utils/global.colors.dart';
 import 'package:stocktracker/view/widget/mybutton.global.dart';
 import 'package:stocktracker/view/widget/mysocial.login.dart';
@@ -49,7 +46,9 @@ class SelectAuth extends StatelessWidget {
                   text: "Login",
                   color: GlobalColors.myColor,
                   onPressed: () {
-                     Get.off(const Login());
+                    //  Get.off(const Login());
+                    Navigator.of(context).pushNamed("login");
+
                   },
                   textColor: Colors.white,
                 ),
@@ -61,7 +60,8 @@ class SelectAuth extends StatelessWidget {
                   text: "Create an Account",
                   color: const Color(0xFFF5F5F5),
                   onPressed: () {
-                    Get.off(const Register());
+                    // Get.off(const Register());
+                    Navigator.of(context).pushNamed("register");
                   },
                   textColor: GlobalColors.myColor,
                 ),

@@ -28,38 +28,37 @@ class LowStockState extends State<LowStock> {
         ),
       ),
       drawer: const MyDrawer(),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Container(
-              margin: const EdgeInsets.all(20),
-              child: Column(
-                 children: [
-              Image.asset(
-                "assets/images/low.png",
-                height: 300,
-                width: 500,
+      body: 
+      SingleChildScrollView(
+        child: Container(
+            margin: const EdgeInsets.all(20),
+            child: Column(
+               children: [
+            Image.asset(
+              "assets/images/low.png",
+              height: 300,
+              width: 500,
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            const Text(
+              'Low Stock',
+              textAlign: TextAlign.center,
+              style: TextStyle(color:GlobalColors.myColor, fontSize: 25),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            const Text(
+              'No Low Stock Yet.',
+              style:TextStyle(
+                fontSize: 20,
+                color: GlobalColors.textColor,
               ),
-              const SizedBox(
-                height: 12,
-              ),
-              const Text(
-                'Low Stock',
-                textAlign: TextAlign.center,
-                style: TextStyle(color:GlobalColors.myColor, fontSize: 25),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              const Text(
-                'No Low Stock Yet.',
-                style:TextStyle(
-                  fontSize: 20,
-                  color: GlobalColors.textColor,
-                ),
-              ),
-            ],
-              )),
-        ),
+            ),
+          ],
+            )),
       ),
     );
   }
