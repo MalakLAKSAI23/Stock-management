@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:stocktracker/components/crud.dart';
 import 'package:stocktracker/components/linkapi.dart';
 import 'package:stocktracker/main.dart';
@@ -15,9 +16,7 @@ class Product extends StatefulWidget {
 class ProductState extends State<Product> with Crud {
   getProduct() async {
     var response = await postRequest(
-        linkViewProduct, {
-          "user_p": sharedPref.getString("id")
-          });
+        linkViewProduct, {"user_id": sharedPref.getString("user_id")});
     return response;
   }
 
@@ -34,6 +33,17 @@ class ProductState extends State<Product> with Crud {
         ),
       ),
       appBar: AppBar(
+         actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: GlobalColors.myColor,
+                size: 30,
+              )),
+        ],
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: Builder(
@@ -50,44 +60,39 @@ class ProductState extends State<Product> with Crud {
       drawer: const MyDrawer(),
       body: SingleChildScrollView(
         child: Container(
-          alignment: Alignment.center,
           margin: const EdgeInsets.all(20),
-          child: 
-          Wrap(
-            spacing: 10, // Définit un espacement horizontal de 10 pixels
-            runSpacing: 10, // Définit un espacement vertical de 10 pixels
-            alignment: WrapAlignment.center,
-            direction: Axis.horizontal,
-            children: [
-               CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',),
-               CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',),
-               CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',),
-               CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',),
-               CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',),
-               CardProduct(onPressed: () {  }, price: '12345', productTitle: 'test',),
-
-              // FutureBuilder(
-              //     future: getProduct(),
-              //     builder: (BuildContext context, AsyncSnapshot snapshot) {
-              //       if (snapshot.hasData) {
-              //         return ListView.builder(
-              //           itemCount: snapshot.data['data'].lenght,
-              //           shrinkWrap: true,
-              //           physics:NeverScrollableScrollPhysics() ,
-              //           itemBuilder: (context, i) {
-              //           return Text("${snapshot.data['data']['name_p']}");
-              //         });
-              //       }
-              //       if (snapshot.connectionState == ConnectionState.waiting) {
-              //         return const Center(
-              //           child: Text("Loading ..."),
-              //         );
-              //       }
-              //       return const Center(
-              //         child: Text("Loading ..."),
-              //       );
-              //     })
-            ],
+          child: FutureBuilder(
+            future: getProduct(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData && snapshot.data != null && snapshot.data['data'] != null) {
+                return Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: List.generate(
+                    // snapshot.data['data'].length,
+                    snapshot.data['data']?.length ?? 0,
+                    (index) {
+                      var product = snapshot.data['data'][index];
+                      return CardProduct(
+                        onPressed: () {},
+                        productTitle: "${product['name_p']}",
+                        price: "${product['price_p']}",
+                      );
+                    },
+                  ),
+                );
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(color: GlobalColors.myColor,),
+                );
+              } else {
+                return Expanded(
+                  child: Center(
+                    child: Text("noDataFound".tr),
+                    ),
+                  );
+              }
+            },
           ),
         ),
       ),

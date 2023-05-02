@@ -47,7 +47,7 @@ class LoginState extends State<Login> {
         ..show();
     } else {
       Navigator.of(context).restorablePushNamedAndRemoveUntil("home", (route) => false);
-      sharedPref.setString("id", response['data']['id'].toString());
+      sharedPref.setString("user_id", response['data']['user_id'].toString());
       sharedPref.setString("email", response['data']['email']);
       sharedPref.setString("password", response['data']['password']);
     }

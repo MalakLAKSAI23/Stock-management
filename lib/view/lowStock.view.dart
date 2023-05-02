@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:stocktracker/utils/global.colors.dart';
 import 'package:stocktracker/view/widget/drawer.dart';
 
@@ -14,6 +15,17 @@ class LowStockState extends State<LowStock> {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
       appBar: AppBar(
+         actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: GlobalColors.myColor,
+                size: 30,
+              )),
+        ],
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: Builder(
@@ -31,28 +43,30 @@ class LowStockState extends State<LowStock> {
       body: 
       SingleChildScrollView(
         child: Container(
+           alignment: Alignment.center,
             margin: const EdgeInsets.all(20),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
                children: [
             Image.asset(
               "assets/images/low.png",
-              height: 300,
-              width: 500,
+              height: 200,
+              width: 200,
             ),
             const SizedBox(
               height: 12,
             ),
-            const Text(
-              'Low Stock',
+            Text(
+              'lowStock'.tr,
               textAlign: TextAlign.center,
               style: TextStyle(color:GlobalColors.myColor, fontSize: 25),
             ),
             const SizedBox(
               height: 40,
             ),
-            const Text(
-              'No Low Stock Yet.',
-              style:TextStyle(
+            Text(
+              'noLowStock'.tr,
+              style:const TextStyle(
                 fontSize: 20,
                 color: GlobalColors.textColor,
               ),

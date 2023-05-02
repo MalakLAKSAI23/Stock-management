@@ -30,6 +30,17 @@ class UpdateSupplierState extends State<UpdateSupplier> {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
       appBar: AppBar(
+         actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: GlobalColors.myColor,
+                size: 30,
+              )),
+        ],
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: Builder(
@@ -54,8 +65,8 @@ class UpdateSupplierState extends State<UpdateSupplier> {
                   children: [
                     Image.asset(
                       "assets/images/supplier2.png",
-                      height: 300,
-                      width: 300,
+                      height: 200,
+                      width: 200,
                     ),
                     const SizedBox(
                       height: 12,

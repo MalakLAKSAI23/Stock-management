@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:stocktracker/locale/locale_controller.dart';
 import 'package:stocktracker/main.dart';
 import 'package:stocktracker/utils/global.colors.dart';
+
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
@@ -9,10 +12,14 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
+  MyLocaleController controllerlang = Get.find();
+  bool isEnglish = false;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
+      child: 
+      ListView(
         children: [
           DrawerHeader(
             decoration: const BoxDecoration(
@@ -39,46 +46,51 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
           ),
           ListTile(
-              title: const Text("Home Page"),
+              title: Text("home".tr),
               leading: const Icon(Icons.home),
             onTap:() => Navigator.of(context).pushNamed("home"),
               ),
           ListTile(
-            title: const Text("Stock"),
+            title: Text("stock".tr),
             leading: const Icon(Icons.auto_graph_outlined),
             onTap:() => Navigator.of(context).pushNamed("stock"),
-
+      
           ),
           ListTile(
-            title: const Text("Supplier"),
+            title: Text("supplier".tr),
             leading: const Icon(Icons.person_3_outlined),
             onTap:() => Navigator.of(context).pushNamed("supplier"),
-
+      
           ),
           ListTile(
-            title:const  Text("Product"),
+            title: Text("product".tr),
             leading:const Icon(Icons.ballot_outlined),
             onTap:() => Navigator.of(context).pushNamed("product"),
           ),
           ListTile(
-              title: const Text("Dashbord"),
+              title:Text("dashboard".tr),
               leading: const Icon(Icons.dashboard_outlined),
             onTap:() => Navigator.of(context).pushNamed("dashboard"),
             ),
           ListTile(
-            title:const Text("Low Stock"),
+            title:Text("lowStock".tr),
             leading:const Icon(Icons.notifications_active_outlined),
             onTap:() => Navigator.of(context).pushNamed("lowStock"),
-
+      
             // onTap: () => Get.off(const LowStock()),
           ),
           ListTile(
-              title: const Text("Infos"),
+              title:Text("languages".tr),
+              leading: const Icon(Icons.translate),
+              onTap:() => Navigator.of(context).pushNamed("languages"),
+              ),
+          ListTile(
+              title:Text("infos".tr),
               leading: const Icon(Icons.info_outline_rounded),
               onTap:() => Navigator.of(context).pushNamed("infos"),
               ),
           ListTile(
-              title: const Text("Logout"),
+              title: Text("logout".tr),
               leading: const Icon(Icons.logout_outlined),
               onTap:() {
                 sharedPref.clear();

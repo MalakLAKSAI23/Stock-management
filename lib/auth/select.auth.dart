@@ -11,7 +11,7 @@ class SelectAuth extends StatelessWidget {
       //Choisir la langue de l'aplication FloatingActionButton
       floatingActionButton: FloatingActionButton(
         backgroundColor: GlobalColors.myColor, //couleur blue
-        onPressed: () {},
+        onPressed: () {Navigator.of(context).pushNamed("languages");},
         child: const Icon(
           Icons.language_rounded,
           color: Colors.white,

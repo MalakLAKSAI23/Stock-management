@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:stocktracker/utils/global.colors.dart';
 import 'package:stocktracker/view/widget/drawer.dart';
 
@@ -14,6 +15,17 @@ class InfosState extends State<Infos> {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
       appBar: AppBar(
+         actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: GlobalColors.myColor,
+                size: 30,
+              )),
+        ],
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: Builder(
@@ -54,8 +66,8 @@ class InfosState extends State<Infos> {
           ),
             Image.asset(
               "assets/images/infos.png",
-              height: 300,
-              width: 500,
+              height: 200,
+              width: 200,
             ),
             const SizedBox(
               height: 12,
@@ -68,9 +80,9 @@ class InfosState extends State<Infos> {
             const SizedBox(
               height: 12,
             ),
-            const Text(
-              'is an application that will allow companies to manage their stock more efficiently\n by recording product entries and exits, monitoring stock levels.',
-              style:TextStyle(
+             Text(
+              "infosText".tr,
+              style:const TextStyle(
                 fontSize: 20,
               ),
             ),
